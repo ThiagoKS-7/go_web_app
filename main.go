@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"database/sql"
 	"html/template"
 	_ "github.com/lib/pq"
-	_ "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 )
 
 var templates = template.Must(template.ParseGlob("templates/*.html"))
@@ -18,11 +20,11 @@ type Produto struct {
 }
 
 type Conexao struct {
-	DB_Name 		string
-	DB_User 		string
-	DB_Password 	string
-	DB_Host 		string
-	DB_Ssl 			string
+	Name 		string
+	User 		string
+	Password 	string
+	Host 		string
+	Ssl 		string
 }
 
 func goDotEnvVariable(key string) string {
@@ -31,29 +33,32 @@ func goDotEnvVariable(key string) string {
 	err := godotenv.Load(".env")
   
 	if err != nil {
-	  log.Fatalf("Error loading .env file")
+	  panic("Error loading .env file")
 	}
   
 	return os.Getenv(key)
 }
 
 func conectaComDb() *sql.DB {
-	env := {
-		DB_Name: 	 	goDotEnvVariable("DB_NAME"),
-		DB_User: 	 	goDotEnvVariable("DB_USER"),
-		DB_Password:	goDotEnvVariable("DB_PASSWORD"),
-		DB_Host 		goDotEnvVariable("DB_HOST")
-		DB_Ssl 			goDotEnvVariable("DB_SSL")
+	env := Conexao {
+		Name: 	 	goDotEnvVariable("DB_NAME"),
+		User: 	 	goDotEnvVariable("DB_USER"),
+		Password:	goDotEnvVariable("DB_PASSWORD"),
+		Host: 		goDotEnvVariable("DB_HOST"),
+		Ssl: 		goDotEnvVariable("DB_SSL"),
 	}
-	dbname := 
-	dbuser := goDotEnvVariable("DB_USER")
-	dbpwd := goDotEnvVariable("DB_PASSWORD")
 
-
-	con := "user dbname password host sslmode"
+	con := "user="+env.User + " dbname="+env.Name + " password="+env.Password + " host="+env.Host + " sslmode=" + env.Ssl
+	db,err := sql.Open("postgres",con) 
+	if err != nil {
+		panic(err.Error())
+	}
+	return db
 }
 
 func main() {
+	db := conectaComDb()
+	defer db.Close()
 	fmt.Println("Serving on http://localhost:8000")
 	getRoutes()
 	http.ListenAndServe(":8000", nil)
