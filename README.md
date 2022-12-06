@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Curso Introdutório de Go da Alura.
     <br> 
 </p>
 
@@ -29,10 +29,12 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Curso Introdutório de Go da Alura
+Curso Introdutório de Go da Alura, voltado a desenvolvimento web.
+
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
+Pesquisar por bibliotecas: https://godoc.org
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [Go](#) - Main language
