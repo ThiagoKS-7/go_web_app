@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"app/db"
-	"github.com/ThiagoKS-7/models"
+	"app/models"
 	"html/template"
 )
 
@@ -23,5 +23,5 @@ func getRoutes() {
 
 func index(w http.ResponseWriter, r *http.Request ) {
 	items := models.BuscaTodosProdutos()
-	templates.ExecuteTemplate(w, "Index", r)
+	templates.ExecuteTemplate(w, "Index", items)
 }
