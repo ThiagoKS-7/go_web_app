@@ -3,6 +3,7 @@ package db
 import (
 	"os"
 	_ "github.com/lib/pq"
+	"database/sql"
 	"github.com/joho/godotenv"
 )
 

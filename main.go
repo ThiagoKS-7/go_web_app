@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"os"
-	_db "db"
-	"database/sql"
+	"app/db"
+	"github.com/ThiagoKS-7/models"
 	"html/template"
 )
 
@@ -23,5 +22,6 @@ func getRoutes() {
 }
 
 func index(w http.ResponseWriter, r *http.Request ) {
-	templates.ExecuteTemplate(w, "Index", produtos)
+	items := models.BuscaTodosProdutos()
+	templates.ExecuteTemplate(w, "Index", r)
 }

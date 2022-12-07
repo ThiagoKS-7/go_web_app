@@ -1,6 +1,6 @@
 package models
 
-import "https://github.com/ThiagoKS-7/go_web_app/db"
+import "app/db"
 
 type Produto struct {
 	Id 			int
@@ -11,7 +11,7 @@ type Produto struct {
 }
 
 func BuscaTodosProdutos() []Produto {
-	db := ConectaComDb()
+	db := db.ConectaComDb()
 	selectAll, err := db.Query("SELECT * from produtos")
 	if err != nil {
 		panic(err.Error())
