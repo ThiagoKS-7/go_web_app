@@ -13,6 +13,7 @@ import (
 var templates = template.Must(template.ParseGlob("templates/*.html"))
 
 type Produto struct {
+	Id 			int
 	Nome 		string
 	Descricao 	string
 	Preco 		float64
@@ -57,8 +58,6 @@ func conectaComDb() *sql.DB {
 }
 
 func main() {
-	db := conectaComDb()
-	defer db.Close()
 	fmt.Println("Serving on http://localhost:8000")
 	getRoutes()
 	http.ListenAndServe(":8000", nil)
@@ -69,9 +68,29 @@ func getRoutes() {
 }
 
 func index(w http.ResponseWriter, r *http.Request ) {
-	produtos := []Produto{
-		{ Nome:"Camiseta", Descricao:"Teste 123", Preco: 39,Quantidade: 5 },
-		{ Nome:"Tênis", Descricao:"Teste 123", Preco: 299, Quantidade: 3},
+	db := conectaComDb()
+	selectAll, err := db.Query("SELECT * from produtos")
+	if err != nil {
+		panic(err.Error())
+	}
+	p := Produto{}
+	produtos := []Produto {}
+	for selectAll.Next() {
+		var id, quantidade	int
+		var nome,desc		string
+		var preco 			float64
+
+		err = selectAll.Scan(&id, &nome, &desc, &preco,&quantidade)
+		if err != nil {
+			panic(err.Error())
+		}
+		p.Nome = nome
+		p.Descricao = desc
+		p.Preco = preco
+		p.Quantidade = quantidade
+
+		produtos = append(produtos, p)
 	}
 	templates.ExecuteTemplate(w, "Index", produtos)
+	defer db.Close()
 }
