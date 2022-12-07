@@ -1,6 +1,6 @@
 package models
 
-import "app/db"
+import "app/database"
 
 type Produto struct {
 	Id 			int

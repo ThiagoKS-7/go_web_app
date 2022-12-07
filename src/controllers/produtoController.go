@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"app/models"
+	"app/src/models"
 )
 
 func BuscaTodosProdutos() []models.Produto {

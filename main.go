@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"app/router"
-	"app/db"
+	"app/src/router"
+	"app/database"
 )
 
 func main() {
