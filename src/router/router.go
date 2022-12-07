@@ -7,5 +7,6 @@ import (
 
 func GetRoutes() {
 	http.HandleFunc("/", views.Index)
+	http.HandleFunc("/new", views.New)
 }
 
