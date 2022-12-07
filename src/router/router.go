@@ -2,7 +2,7 @@ package router
 
 import (
 	"net/http"
-	"app/views"
+	"app/src/views"
 )
 
 func GetRoutes() {
