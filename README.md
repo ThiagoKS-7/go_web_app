@@ -21,7 +21,11 @@
 </p>
 
 ![image](https://user-images.githubusercontent.com/83460816/206069380-a335c2e5-1c2c-4255-a772-e86333e202a8.png)
-![image](https://user-images.githubusercontent.com/83460816/206069437-89cb951d-a1c5-4b19-bda3-1afa978f0c01.png)
+<div align="center">
+  <img  src="https://user-images.githubusercontent.com/83460816/206069437-89cb951d-a1c5-4b19-bda3-1afa978f0c01.png"/>
+  <img  width="800px" src="https://user-images.githubusercontent.com/83460816/206071429-0731e085-8c2c-432f-a545-cd81e3c2fd8a.png"/>
+</div>
+
 
 
 ## 📝 Table of Contents
