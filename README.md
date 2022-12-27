@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Curso Introdutório de Go da Alura.
+<p align="center"> Curso Introdutório de webdev em Go da Alura.
     <br> 
 </p>
 
